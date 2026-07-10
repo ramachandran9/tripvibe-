@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Page - Wanderly</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --bg-outer: #103328;   
+            --bg-main: #0c2b21;        
+            --bg-card: #081e17;        
+            --accent-orange: #a0400b;  
+            --accent-gold: #c39446;   
+            --text-light: #e2e8f0;     
+            --text-muted: #8ba19a;    
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-outer);
+            color: var(--text-light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+
+        .main-container {
+            width: 100%;
+            max-width: 1100px;
+            background-color: var(--bg-main);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 25px 40px;
+            border-bottom: 1px solid rgba(139, 161, 154, 0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding-bottom: 5px;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent-gold) !important;
+        }
+
+        .btn-login {
+            background-color: var(--accent-orange);
+            border: 1px solid var(--accent-orange);
+            color: var(--text-light);
+            padding: 8px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        .btn-login:hover {
+            background-color: #bc4d10;
+            transform: translateY(-2px);
+        }
+
+        .content-wrapper {
+            display: flex;
+            padding: 40px;
+            gap: 40px;
+        }
+
+        .info-panel {
+            flex: 1;
+        }
+
+        .form-panel {
+            flex: 1.2;
+            background-color: var(--bg-card);
+            padding: 30px;
+            border-radius: 10px;
+            border: 1px solid rgba(195, 148, 114, 0.05);
+        }
+
+        .main-heading {
+            font-size: 2.2rem;
+            color: var(--text-light);
+            margin-bottom: 5px;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--accent-gold);
+            margin-bottom: 20px;
+        }
+
+        .divider .line {
+            height: 1px;
+            width: 60px;
+            background-color: var(--accent-gold);
+        }
+
+        .sub-text {
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 35px;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .icon-box {
+            width: 45px;
+            height: 45px;
+            background-color: rgba(195, 148, 70, 0.1);
+            border: 1px solid var(--accent-gold);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+        }
+
+        .contact-item h4 {
+            color: var(--text-light);
+            font-size: 1rem;
+            margin-bottom: 2px;
+        }
+
+        .contact-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .social-section h3 {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 12px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-icons a {
+            width: 36px;
+            height: 36px;
+            background-color: var(--accent-orange);
+            color: var(--text-light);
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: transform 0.2s, background-color 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: #bc4d10;
+            transform: scale(1.1);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-light);
+        }
+
+        .form-group input, .form-group textarea {
+            background-color: transparent;
+            border: 1px solid var(--accent-gold);
+            border-radius: 6px;
+            padding: 12px;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .form-group input::placeholder, .form-group textarea::placeholder {
+            color: rgba(139, 161, 154, 0.4);
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: var(--accent-orange);
+            box-shadow: 0 0 5px rgba(160, 64, 11, 0.3);
+        }
+
+        .btn-submit {
+            background-color: var(--accent-orange);
+            color: var(--text-light);
+            border: none;
+            padding: 14px;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn-submit:hover {
+            background-color: #bc4d10;
+            transform: translateY(-1px);
+        }
+
+        .footer {
+            background-color: #17120e;  
+            padding: 40px;
+            border-top: 1px solid rgba(139, 161, 154, 0.05);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr 1.5fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            color: var(--accent-gold);
+            font-size: 1rem;
+            margin-bottom: 15px;
+        }
+
+        .footer-col p {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            line-height: 1.5;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 8px;
+        }
+
+        .footer-col ul li a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--accent-gold);
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .footer-socials a {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            transition: color 0.3s;
+        }
+
+        .footer-socials a:hover {
+            color: var(--accent-orange);
+        }
+
+        .newsletter-box {
+            display: flex;
+            margin-top: 12px;
+            border: 1px solid var(--accent-orange);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .newsletter-box input {
+            background: transparent;
+            border: none;
+            padding: 10px;
+            color: var(--text-light);
+            flex: 1;
+            font-size: 0.85rem;
+            outline: none;
+        }
+
+        .newsletter-box button {
+            background-color: var(--accent-orange);
+            border: none;
+            color: var(--text-light);
+            padding: 0 15px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .newsletter-box button:hover {
+            background-color: #bc4d10;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            border-top: 1px solid rgba(139, 161, 154, 0.1);
+            padding-top: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .content-wrapper {
+                flex-direction: column;
+                padding: 25px;
+                gap: 30px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .footer-col.newsletter {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+                gap: 15px;
+                padding: 20px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-col.newsletter {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h2 class="page-title" style="margin-bottom: 10px; font-size: 1.2rem; letter-spacing: 2px; color: var(--text-muted);">CONTACT PAGE</h2>
+
+    <div class="main-container">
+        <header class="navbar">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-plane"></i> Wanderly
+            </a>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="explore.html">Explore</a>
+                <a href="contact.html">Contact</a>
+            </nav>
+            <button class="btn-login" onclick="location.href='login.html'">Login</button>
+        </header>
+
+        <div class="content-wrapper">
+            <div class="info-panel">
+                <h1 class="main-heading">Get In Touch</h1>
+                <div class="divider">
+                    <span class="line"></span>
+                    <i class="fa-solid fa-plane"></i>
+                    <span class="line"></span>
+                </div>
+                <p class="sub-text">Have questions or need assistance?<br>We're here to help!</p>
+
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <div class="icon-box"><i class="fa-regular fa-envelope"></i></div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@wanderly.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon-box"><i class="fa-solid fa-phone"></i></div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+ 1 234 567 890</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="icon-box"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>
+                            <h4>Address</h4>
+                            <p>125 Travel Street, Adventure City,<br>World 12545</p>
+                        </div>
+                    </div>
+                </div>
+
+            
+                <div class="social-section">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.twitter.com" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="https://www.youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-panel">
+                <form class="contact-form" onsubmit="event.preventDefault();">
+                    <div class="form-group">
+                        <label for="name">Your Name</label>
+                        <input type="text" id="name" placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" placeholder="Enter subject">
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" rows="5" placeholder="Write your message..."></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+
+        
+        <footer class="footer">
+            <div class="footer-grid">
+                <div class="footer-col branding">
+                    <h3>Wanderly</h3>
+                    <p>Let's make your next journey your best adventure yet.</p>
+                    <div class="footer-socials">
+                        <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.twitter.com" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="https://www.youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="explore.html">Explore</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Top Destinations</h3>
+                    <ul>
+                        <li><a href="#">Bali</a></li>
+                        <li><a href="#">Greece</a></li>
+                        <li><a href="#">Switzerland</a></li>
+                        <li><a href="#">Japan</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms & Conditions</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col newsletter">
+                    <h3>Newsletter</h3>
+                    <p>Subscribe to get the latest travel updates and offers.</p>
+                    <div class="newsletter-box">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="button"><i class="fa-regular fa-paper-plane"></i></button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 Wanderly. All Rights Reserved.
+            </div>
+        </footer>
+    </div>
+    <script>
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const currentPage = window.location.pathname.split("/").pop();
+
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPage || (currentPage === "" && link.getAttribute('href') === "index.html")) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+            link.addEventListener('click', function() {
+                navLinks.forEach(item => item.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wanderly - Our Journey</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-teal: #0e7490;      
+            --secondary-coral: #f43f5e;   
+            --dark-slate: #0f172a;        
+            --text-main: #334155;         
+            --text-muted: #64748b;        
+            --page-bg: #f8fafc;           
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--page-bg);
+            color: var(--text-main);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            background-color: transparent;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--primary-teal);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--dark-slate);
+            font-weight: 600;
+            font-size: 16px;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links li a:hover, .nav-links li a.active {
+            color: #facc15 !important; 
+        }
+
+        .login-btn {
+            background-color: var(--primary-teal);
+            color: var(--white);
+            border: none;
+            padding: 12px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .login-btn:hover {
+            background-color: #0891b2;
+        }
+        .about-section {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 60px;
+            align-items: center;
+            padding: 60px 0 80px;
+        }
+
+        .about-content h1 {
+            font-size: 46px;
+            font-weight: 800;
+            color: var(--dark-slate);
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+        .title-divider {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 35px;
+        }
+
+        .title-divider .line {
+            width: 100px;
+            height: 2px;
+            background-color: var(--secondary-coral);
+        }
+
+        .title-divider i {
+            color: var(--secondary-coral);
+            font-size: 16px;
+        }
+        .about-content p {
+            font-size: 16.5px;
+            line-height: 1.8;
+            color: var(--text-main);
+            margin-bottom: 24px;
+        }
+
+        .about-content p strong {
+            color: var(--primary-teal);
+        }
+        .about-image img {
+            width: 100%;
+            height: 460px;
+            object-fit: cover;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px rgba(15, 23, 42, 0.06);
+        }
+        .features-section {
+            padding: 80px 0;
+            text-align: center;
+            background-color: var(--white);
+            border-radius: 32px;
+            margin-bottom: 80px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.02);
+        }
+
+        .features-section h2 {
+            font-size: 34px;
+            font-weight: 700;
+            color: var(--dark-slate);
+            margin-bottom: 55px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+        }
+
+        .feature-item {
+            padding: 0 30px;
+            text-align: left;
+            border-right: 1px solid #e2e8f0;
+        }
+
+        .feature-item:last-child {
+            border-right: none;
+        }
+
+        .feature-icon {
+            width: 54px;
+            height: 54px;
+            background-color: #ecfeff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .feature-icon i {
+            color: var(--primary-teal);
+            font-size: 22px;
+        }
+
+        .feature-item h3 {
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--dark-slate);
+            margin-bottom: 12px;
+        }
+
+        .feature-item p {
+            font-size: 14.5px;
+            line-height: 1.6;
+            color: var(--text-muted);
+        }
+        footer {
+            background-color: var(--dark-slate);
+            color: #94a3b8;
+            padding: 80px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand .logo {
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .footer-brand p {
+            font-size: 14.5px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-icons a {
+            width: 38px;
+            height: 38px;
+            background-color: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--secondary-coral);
+            transform: translateY(-2px);
+        }
+
+        .footer-column h4 {
+            color: var(--white);
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 22px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 14px;
+        }
+
+        .footer-column ul li a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-size: 14.5px;
+            transition: color 0.2s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--white);
+        }
+        .newsletter-box p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .subscribe-form {
+            display: flex;
+            background-color: var(--white);
+            padding: 6px;
+            border-radius: 12px;
+            align-items: center;
+        }
+
+        .subscribe-form input {
+            border: none;
+            outline: none;
+            padding: 10px 14px;
+            font-size: 14px;
+            width: 100%;
+            color: var(--dark-slate);
+        }
+
+        .subscribe-btn {
+            background-color: var(--primary-teal);
+            color: var(--white);
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 9px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .subscribe-btn:hover {
+            background-color: #0891b2;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 30px;
+            text-align: center;
+            font-size: 14px;
+            color: #475569;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav>
+            <div class="logo">
+                <i class="fa-solid fa-plane-departure"></i> Wanderly
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="explore.html">Explore</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="login-btn" onclick="location.href='login.html'">Login</button>
+        </nav>
+        <section class="about-section">
+            <div class="about-content">
+                <h1>About Us</h1>
+                <div class="title-divider">
+                    <div class="line"></div>
+                    <i class="fa-solid fa-plane"></i>
+                </div>
+                <p>Wanderly was built on a simple yet profound realization: <strong>that the most meaningful travel experiences happen when you step off the beaten track.</strong> We don't just plan standard vacations; we curate deep, immersive stories that bridge the gap between curious explorers and global cultures.</p>
+                <p>Whether your dream is witnessing the sunrise over misty mountain ridges or losing yourself in the vibrant energy of coastal old towns, our expert team tailors every detail. We balance raw local authenticity with modern premium comfort, ensuring your peace of mind throughout the entire journey.</p>
+            </div>
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?q=80&w=800&auto=format&fit=crop" alt="Majestic Wanderlust Destination View">
+            </div>
+        </section>
+        <section class="features-section">
+            <h2>Why Travel With Us?</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-tags"></i></div>
+                    <h3>Best Prices</h3>
+                    <p>We unlock unmissable insider rates and curated premium deals perfectly suited for your journey.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-headset"></i></div>
+                    <h3>Trusted Service</h3>
+                    <p>Our dedicated travel concierges stand ready 24/7 to support you seamlessly at every turn.</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-hotel"></i></div>
+                    <h3>Handpicked Hotels</h3>
+                    <p>Every single boutique stay and luxury villa is personally vetted to secure optimal comfort.</p>
+                </div>
+    
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                    <h3>Memorable Moments</h3>
+                    <p>We dive deep to craft bespoke local itineraries that leave a profound, lifelong impression.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <div class="logo"><i class="fa-solid fa-plane-departure"></i> Wanderly</div>
+                <p>Transforming ordinary routes into unforgettable milestones. Let's design your next great chapter today.</p>
+                
+                <div class="social-icons">
+                    <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.twitter.com" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="https://www.youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="explore.html">Explore</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Top Destinations</h4>
+                <ul>
+                    <li><a href="#">Bali</a></li>
+                    <li><a href="#">Greece</a></li>
+                    <li><a href="#">Switzerland</a></li>
+                    <li><a href="#">Japan</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column newsletter-box">
+                <h4>Newsletter</h4>
+                <p>Subscribe to claim exclusive early travel updates and members-only flash offers.</p>
+                <div class="subscribe-form">
+                    <input type="email" placeholder="Your email address">
+                    <button class="subscribe-btn"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2026 Wanderly. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script>
+        const navLinks = document.querySelectorAll('.nav-links a');
+        const currentPage = window.location.pathname.split("/").pop();
+
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPage || (currentPage === "" && link.getAttribute('href') === "index.html")) {
+                link.classList.add('active');
+            } else {
+                link.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

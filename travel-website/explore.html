@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wanderly - Explore Destinations</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-green: #064e3b;    
+            --accent-gold: #b45309;       
+            --bg-light: #f0fdf4;         
+            --text-dark: #0f172a;          
+            --text-muted: #475569;        
+            --white: #ffffff;
+            --footer-bg: #022c22;          
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: #fafaf9;
+            color: var(--text-dark);
+            padding-bottom: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            background-color: transparent;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--primary-green);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links li a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 16px;
+            position: relative;
+            padding-bottom: 4px;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links li a:hover {
+            color: var(--primary-green);
+        }
+        
+        .nav-links li a.active {
+            color: var(--primary-green); 
+        }
+
+        .login-btn {
+            background-color: var(--primary-green);
+            color: var(--white);
+            border: none;
+            padding: 12px 28px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .login-btn:hover {
+            background-color: #047857;
+        }
+        .explore-header {
+            text-align: center;
+            padding: 50px 0 30px;
+        }
+
+        .explore-header h1 {
+            font-size: 42px;
+            font-weight: 700;
+            color: var(--primary-green);
+            margin-bottom: 10px;
+        }
+
+        .explore-header i {
+            color: var(--accent-gold);
+            font-size: 18px;
+        }
+        .filter-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .tab {
+            background-color: var(--white);
+            color: var(--text-muted);
+            border: 1px solid #e7e5e4;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .tab:hover {
+            border-color: var(--primary-green);
+            color: var(--primary-green);
+        }
+
+        .tab.active {
+            background-color: var(--primary-green);
+            color: var(--white);
+            border-color: var(--primary-green);
+            box-shadow: 0 4px 12px rgba(6, 78, 59, 0.15);
+        }
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 28px;
+            margin-bottom: 90px;
+        }
+
+        .dest-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .dest-card.hide {
+            display: none;
+        }
+
+        .dest-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(6, 78, 59, 0.08);
+        }
+
+        .dest-card img {
+            width: 100%;
+            height: 210px;
+            object-fit: cover;
+        }
+
+        .dest-card-content {
+            padding: 20px;
+        }
+
+        .dest-card-content h3 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: var(--text-dark);
+        }
+
+        .dest-card-content p {
+            font-size: 14px;
+            color: var(--accent-gold);
+            font-weight: 700;
+        }
+        footer {
+            background-color: var(--footer-bg);
+            color: #a7f3d0;
+            padding: 80px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr 1fr 1.5fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-brand .logo {
+            color: var(--white);
+            margin-bottom: 20px;
+        }
+
+        .footer-brand p {
+            font-size: 14.5px;
+            line-height: 1.6;
+            color: #6ee7b7;
+            margin-bottom: 24px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .social-icons a {
+            width: 38px;
+            height: 38px;
+            background-color: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--accent-gold);
+            transform: translateY(-2px);
+        }
+
+        .footer-column h4 {
+            color: var(--white);
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 22px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 14px;
+        }
+
+        .footer-column ul li a {
+            color: #6ee7b7;
+            text-decoration: none;
+            font-size: 14.5px;
+            transition: color 0.2s;
+        }
+
+        .footer-column ul li a:hover {
+            color: var(--white);
+        }
+        .newsletter-box p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #6ee7b7;
+            margin-bottom: 20px;
+        }
+
+        .subscribe-form {
+            display: flex;
+            background-color: var(--white);
+            padding: 6px;
+            border-radius: 12px;
+            align-items: center;
+        }
+
+        .subscribe-form input {
+            border: none;
+            outline: none;
+            padding: 10px 14px;
+            font-size: 14px;
+            width: 100%;
+            color: var(--text-dark);
+            background: transparent;
+        }
+
+        .subscribe-btn {
+            background-color: var(--accent-gold);
+            color: var(--white);
+            border: none;
+            width: 42px;
+            height: 42px;
+            border-radius: 9px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+
+        .subscribe-btn:hover {
+            background-color: #92400e;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 30px;
+            text-align: center;
+            font-size: 14px;
+            color: #047857;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <nav>
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-plane-departure"></i> Wanderly
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="explore.html" class="active">Explore</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="login-btn" onclick="location.href='login.html'">Login</button>
+        </nav>
+        
+        <header class="explore-header">
+            <h1>Explore Destinations</h1>
+            <i class="fa-solid fa-plane"></i>
+        </header>
+        <div class="filter-tabs">
+            <button class="tab active" data-category="all">All</button>
+            <button class="tab" data-category="beach">Beach</button>
+            <button class="tab" data-category="mountains">Mountains</button>
+            <button class="tab" data-category="city">City</button>
+            <button class="tab" data-category="adventure">Adventure</button>
+        </div>
+        <main class="destinations-grid">
+            <div class="dest-card" data-type="beach">
+                <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=600&auto=format&fit=crop" alt="Bali, Indonesia">
+                <div class="dest-card-content">
+                    <h3>Bali, Indonesia</h3>
+                    <p>From $499</p>
+                </div>
+            </div>
+            <div class="dest-card" data-type="beach">
+                <img src="https://images.unsplash.com/photo-1533105079780-92b9be482077?q=80&w=600&auto=format&fit=crop" alt="Santorini, Greece">
+                <div class="dest-card-content">
+                    <h3>Santorini, Greece</h3>
+                    <p>From $699</p>
+                </div>
+            </div>
+            <div class="dest-card" data-type="mountains">
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=600&auto=format&fit=crop" alt="Switzerland Mountains">
+                <div class="dest-card-content">
+                    <h3>Switzerland</h3>
+                    <p>From $899</p>
+                </div>
+            </div>
+            <div class="dest-card" data-type="city">
+                <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=600&auto=format&fit=crop" alt="Tokyo, Japan">
+                <div class="dest-card-content">
+                    <h3>Tokyo, Japan</h3>
+                    <p>From $799</p>
+                </div>
+            </div>
+            <div class="dest-card" data-type="beach">
+                <img src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?q=80&w=600&auto=format&fit=crop" alt="Maldives Resort">
+                <div class="dest-card-content">
+                    <h3>Maldives</h3>
+                    <p>From $899</p>
+                </div>
+            </div>
+            <div class="dest-card" data-type="city">
+                <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=600&auto=format&fit=crop" alt="Paris, France">
+                <div class="dest-card-content">
+                    <h3>Paris, France</h3>
+                    <p>From $599</p>
+                </div>
+            </div>
+            <div class="dest-card" data-type="city">
+                <img src="https://images.unsplash.com/photo-1496442226666-8d4d0e62e6e9?q=80&w=600&auto=format&fit=crop" alt="New York City, USA">
+                <div class="dest-card-content">
+                    <h3>New York, USA</h3>
+                    <p>From $899</p>
+                </div>
+            </div>
+            <div class="dest-card" data-type="adventure">
+                <img src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?q=80&w=600&auto=format&fit=crop" alt="Dubai, UAE">
+                <div class="dest-card-content">
+                    <h3>Dubai, UAE</h3>
+                    <p>From $999</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer>
+        <div class="container footer-grid">
+            <div class="footer-brand">
+                <a href="index.html" class="logo"><i class="fa-solid fa-plane-departure"></i> Wanderly</a>
+                <p>Transforming ordinary routes into unforgettable milestones. Let's design your next great chapter today.</p>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.twitter.com" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="https://www.youtube.com" target="_blank"><i class="fa-brands fa-youtube"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="explore.html">Explore</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Top Destinations</h4>
+                <ul>
+                    <li><a href="#">Bali</a></li>
+                    <li><a href="#">Greece</a></li>
+                    <li><a href="#">Switzerland</a></li>
+                    <li><a href="#">Japan</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Support</h4>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column newsletter-box">
+                <h4>Newsletter</h4>
+                <p>Subscribe to claim exclusive early travel updates and members-only flash offers.</p>
+                <div class="subscribe-form">
+                    <input type="email" placeholder="Your email address">
+                    <button class="subscribe-btn"><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>© 2026 Wanderly. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script>
+        const filterButtons = document.querySelectorAll('.filter-tabs .tab');
+        const destCards = document.querySelectorAll('.destinations-grid .dest-card');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const category = button.getAttribute('data-category');
+
+                destCards.forEach(card => {
+                    const cardType = card.getAttribute('data-type');
+                    if (category === 'all' || cardType === category) {
+                        card.classList.remove('hide');
+                    } else {
+                        card.classList.add('hide');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
