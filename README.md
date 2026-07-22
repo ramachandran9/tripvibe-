@@ -57,7 +57,3 @@ Developer
 Sangeetha R
 
 B.Tech – Artificial Intelligence & Data Science
-
-**Sangeetha R**
-
-B.Tech – Artificial Intelligence & Data Science
