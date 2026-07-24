@@ -18,10 +18,6 @@ Wanderly is a modern and responsive travel website developed using HTML, CSS, Ja
 - HTML5
 - CSS3
 - JavaScript
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
 
 #Project Structure
 
