@@ -1,6 +1,6 @@
 # Wanderly – Travel Website
 
-Wanderly is a modern and responsive travel website developed using HTML, CSS, JavaScript, Node.js, Express.js, and MongoDB. Users can explore destinations, create an account, and log in to access the website.
+Wanderly is a modern and responsive travel website developed using HTML, CSS, JavaScript -Users can explore destinations, create an account, and log in to access the website.
 
 #Features
 
